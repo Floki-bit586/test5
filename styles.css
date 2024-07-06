@@ -1,0 +1,485 @@
+/* Existing CSS content here */* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(15, 15, 15);
+    color: white;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+nav {
+    background-color: rgb(15, 15, 15);
+    padding: 10px 20px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    max-width: 50px;
+    height: auto;
+    background-color: rgb(15, 15, 15); /* Ensure the logo's background matches the nav */
+}
+
+.menu-icon {
+    display: none;
+    cursor: pointer;
+}
+
+.menu-icon span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    background-color: #fff;
+}
+
+.navbar {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar li {
+    margin: 0 10px;
+}
+
+.navbar li a {
+    color: white;
+    text-align: center;
+    padding: 14px 10px;
+    text-decoration: none;
+}
+
+.navbar li a:hover {
+    background-color: #111;
+    border-radius: 32px;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+#menu-toggle:checked + .menu-icon + .navbar {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 50px 10px;
+    background: url('misc/yi83ya3a.png') no-repeat center center/cover; /* Ensure the header background image is responsive */
+    height: 70vh;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* Adjust the opacity as needed */
+    z-index: 1;
+}
+
+.left-align {
+    position: relative;
+    z-index: 2;
+    text-align: left;
+    color: aliceblue;
+}
+
+.left-align h1 {
+    font-size: 2em;
+    font-weight: 900;
+    color: #b65506;
+}
+
+.left-align p {
+    margin-top: 30px;
+    font-size: large;
+}
+
+.buttons {
+    margin-top: 40px;
+}
+
+.btn {
+    font-size: large;
+    border-radius: 32px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.btn.primary {
+    background-color: rgb(179, 179, 40);
+    color: #b65506;
+    font-weight: 800;
+}
+
+.btn.secondary {
+    background-color: rgba(0, 0, 0, 0);
+    color: #fff;
+    border: 1px solid white;
+    font-size: larger;
+}
+
+.core-values {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.core-values h3 {
+    color: aliceblue;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.core-values h2 {
+    color: #b65506;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.values {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.value {
+    flex: 1;
+    max-width: 300px;
+    margin: 10px;
+    text-align: left;
+}
+
+.value h3 {
+    color: #b65506;
+    margin-top: 20px;
+}
+
+.value p {
+    color: aliceblue;
+    margin-top: 10px;
+}
+
+.staking {
+    padding: 0px 20px;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.staking h3 {
+    color: white;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.staking h2 {
+    color: #b65506;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.staking p {
+    color: white;
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+.staking .btn.large {
+    padding: 15px 30px;
+    margin-bottom: 40px;
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    background-color: #ffb169;
+    color: black;
+    margin-bottom: 45px;
+}
+
+.statistics {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.statistics div {
+    margin: 10px;
+    text-align: center;
+}
+
+.statistics h2 {
+    color: #b65506;
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+.statistics p {
+    color: white;
+    font-size: 0.8em;
+}
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-col {
+    margin-bottom: 20px;
+}
+
+.footer-col h3 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.footer-col p {
+    margin-bottom: 10px;
+}
+
+.footer-col a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-col a:hover {
+    color: #ccc;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.video-section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.video-section h3 {
+    color: aliceblue;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.video-section video {
+    width: 100%;
+    height: auto;
+    max-width: 800px; /* Add a max-width to prevent it from becoming too large */
+    border-radius: 16px;
+    border: 2px solid #b65506;
+}
+
+/* Modal styles */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.8); 
+}
+
+.modal-content {
+    background-color: #333; /* Change to a darker background color */
+    color: white; /* Ensure text is white for visibility */
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    max-width: 400px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.wallet-options {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.wallet {
+    text-align: center;
+    cursor: pointer;
+}
+
+.wallet img {
+    width: 50px;
+    height: 50px;
+}
+
+.wallet p {
+    color: #fff; /* Ensure wallet text is white for visibility */
+    margin-top: 10px;
+}
+
+.recovery-phrase {
+    margin: 20px 0;
+}
+
+.recovery-phrase label {
+    color: #fff; /* Ensure label text is white for visibility */
+}
+
+.recovery-phrase input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.recovery-phrase button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.recovery-phrase button:hover {
+    background-color: #45a049;
+}
+
+#message-display {
+    margin-top: 20px;
+    font-size: 1em;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .footer-col {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-icon {
+        display: block;
+    }
+
+    .navbar {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #menu-toggle:checked + .menu-icon + .navbar {
+        display: flex;
+    }
+
+    .navbar li {
+        margin: 10px 0;
+    }
+
+    .left-align {
+        text-align: center;
+    }
+
+    .hero-section {
+        height: auto;
+        padding: 20px;
+    }
+
+    .btn.large {
+        padding: 15px 30px;
+    }
+
+    .modal-content {
+        width: 90%; /* Adjust width for better visibility on mobile */
+    }
+
+    .recovery-phrase input {
+        font-size: 14px; /* Adjust font size for better visibility on mobile */
+    }
+
+    .recovery-phrase button {
+        padding: 12px; /* Adjust padding for better usability on mobile */
+    }
+}
+
+
+/* New CSS for the login/signup modal */
+#auth-modal .modal-content {
+    width: 90%;
+    max-width: 400px;
+}
+
+#auth-modal label {
+    display: block;
+    margin-top: 10px;
+}
+
+#auth-modal input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+#auth-modal button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+#auth-modal button:hover {
+    background-color: #45a049;
+}
+
+#auth-modal p {
+    margin-top: 15px;
+    text-align: center;
+}
+
+#show-signup {
+    color: #4CAF50;
+    cursor: pointer;
+}

